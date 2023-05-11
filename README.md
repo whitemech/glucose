@@ -1,29 +1,47 @@
-# README #
+# Glucose SAT Solver
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This repository mirrors the [Glucose project](https://www.labri.fr/perso/lsimon/glucose/)
+on GitHub.
 
-### What is this repository for? ###
+The original instructions for building the software are 
+in `README`.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Dependencies
 
-### How do I get set up? ###
+### CMake
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Differently from the original source code, we use [CMake](https://cmake.org/)
+as a build tool.
 
-### Contribution guidelines ###
+On Ubuntu:
 
-* Writing tests
-* Code review
-* Other guidelines
+```bash
+sudo apt-get install cmake
+```
 
-### Who do I talk to? ###
+### zlib
 
-* Repo owner or admin
-* Other community or team contact
+Glucose depends on [zlib](https://zlib.net/).
+
+On Ubuntu:
+
+```bash
+sudo apt-get install zlib-dev
+```
+
+## Build
+
+To build the software, run the following commands:
+
+```bash
+mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make -j
+```
+
+The produced artifacts will be:
+- `libglucose.a` and `libglucosep.a`: the static libraries
+   for the simple and parallel version of the SAT solver, respectively.
+- `glucose-simp` and `glucose-syrup`: the binaries 
+   for the simple and parallel version of the SAT solver, respectively.
+
