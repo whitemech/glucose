@@ -155,6 +155,14 @@ void ParallelSolver::reduceDB() {
     
     int limit;
 
+    if (!chanseokStrategy) { // We will use the LBD, but keep 10% of the best active clauses
+      sort(learnts, reduceDBAct_lt(ca));
+      for(int i=learnts.size()*90/100;i<learnts.size();i++) {
+        Clause &c = ca[learnts[i]];
+        c.setCanBeDel(false);
+      }
+    }
+
   if (chanseokStrategy)
       sort(learnts, reduceDBAct_lt(ca));
   else 
@@ -349,6 +357,7 @@ bool ParallelSolver::parallelImportClauses() {
         //printf("Thread %d imports clause from thread %d\n", threadNumber(), importedFromThread);
         CRef cr = ca.alloc(importedClause, true, true);
         ca[cr].setLBD(importedClause.size());
+        ca[cr].setSimplified(1);
         if (plingeling) // 0 means a broadcasted clause (good clause), 1 means a survivor clause, broadcasted
             ca[cr].setExported(2); // A broadcasted clause (or a survivor clause) do not share it anymore
         else {

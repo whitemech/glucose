@@ -497,7 +497,7 @@ void MultiSolvers::printFinalStats() {
     for(int i = 0; i < solvers.size(); i++) {
         origseen += solvers[i]->stats[originalClausesSeen];
     }
-    printf("| %13" PRIu64" %% ", origseen * 100 / nClauses() / solvers.size());
+    printf("| %13" PRIu64" %% ", (nClauses() > 0 && solvers.size() > 0) ?origseen * 100 / nClauses() / solvers.size() : 0);
 
     for(int i = 0; i < solvers.size(); i++) {
         printf("| %10" PRIu64" ", solvers[i]->stats[originalClausesSeen]);

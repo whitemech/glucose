@@ -256,3 +256,7 @@ tags
 
 # End of https://www.gitignore.io/api/c,vim,c++,code,linux,macos,cmake,clion
 
+**/*.or
+**/*.mk
+simp/glucose_static
+build/*

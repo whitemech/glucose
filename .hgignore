@@ -1,0 +1,28 @@
+# use glob syntax.
+syntax: glob
+
+*~
+*.or
+*.o
+*.op
+*.od
+*.komodoproject
+
+simp/depend.mk
+core/depend.mk
+
+simp/glucose
+simp/glucose_debug
+simp/glucose_profile
+simp/glucose_release
+simp/glucose_static
+
+core/glucose
+core/glucose_debug
+core/glucose_profile
+core/glucose_release
+core/glucose_static
+
+
+# switch to regexp syntax.
+syntax: regexp
